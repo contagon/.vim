@@ -20,6 +20,7 @@ set softtabstop=4
 set expandtab
 
 set number
+set ruler
 set showcmd
 set cursorline
 filetype indent on

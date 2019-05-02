@@ -10,21 +10,24 @@
 
 # hlsearch on (H) or off (h):
 ~h
+# Last Search Pattern:
+~MSle0~/until
+
 # Command Line History (newest to oldest):
-:wq
-|2,0,1556682986,,"wq"
 :q
-|2,0,1556678419,,"q"
+|2,0,1556808033,,"q"
+:wq
+|2,0,1556808030,,"wq"
+:q!
+|2,0,1556807996,,"q!"
+:w
+|2,0,1556761482,,"w"
 :PlugInstall
 |2,0,1556677728,,"PlugInstall"
-:w
-|2,0,1556677671,,"w"
 :PlugInstall sjl/badwolf
 |2,0,1556677560,,"PlugInstall sjl/badwolf"
 :PlugStatus
 |2,0,1556677524,,"PlugStatus"
-:q!
-|2,0,1556676875,,"q!"
 :PlugUpgrade
 |2,0,1556676869,,"PlugUpgrade"
 :vsp resume.cls
@@ -63,6 +66,10 @@
 |2,0,1556557294,,"'<,'>+y"
 
 # Search String History (newest to oldest):
+?/until
+|2,1,1556807940,47,"until"
+?/source
+|2,1,1556807912,47,"source"
 
 # Expression History (newest to oldest):
 
@@ -72,14 +79,13 @@
 
 # Registers:
 "0	CHAR	0
-	    parser = argparse.ArgumentParser(
-	        description="Silicon Photonics Waveguide Simulator")
-	    parser.add_argument("--gap",type=float, required=True)
-	    parser.add_argument("--radius",type=float, required=True)
-	    parser.add_argument("--resolution",type=int, default=50)
-	    parser.add_argument("--folderName",type=str,default='')
-	 
-|3,0,0,0,7,0,1556678610,"    parser = argparse.ArgumentParser(","        description=\"Silicon Photonics Waveguide Simulator\")","    parser.add_argument(\"--gap\",type=float, required=True)","    parser.add_argument(\"--radius\",type=float, required=True)","    parser.add_argument(\"--resolution\",type=int, default=50)","    parser.add_argument(\"--folderName\",type=str,default='')"," "
+	module load boost
+	module load openblas
+	module load miniconda3
+	source activate main
+	
+	
+|3,0,0,0,6,0,1556731802,"module load boost","module load openblas","module load miniconda3","source activate main","",""
 "1	LINE	0
 	    parser.add_argument("--resolution",type=int, default=50)
 |3,0,1,1,1,0,1556678533,"    parser.add_argument(\"--resolution\",type=int, default=50)"
@@ -151,240 +157,246 @@
 	sional CV - RESUME CLASS FILE
 |3,0,9,1,1,0,1556675591,"sional CV - RESUME CLASS FILE"
 ""-	CHAR	0
-	d
-|3,1,36,0,1,0,1556682929,"d"
+	 
+|3,1,36,0,1,0,1556761456," "
 
 # File marks:
-'0  27  3  ~/.vim/vimrc
-|4,48,27,3,1556682986,"~/.vim/vimrc"
-'1  6  0  ~/.vim/vimrc
-|4,49,6,0,1556682904,"~/.vim/vimrc"
-'2  6  0  ~/.vim/vimrc
-|4,50,6,0,1556682904,"~/.vim/vimrc"
-'3  9  0  ~/Documents/meep/meepSweep.py
-|4,51,9,0,1556682386,"~/Documents/meep/meepSweep.py"
-'4  1  0  ~/Documents/meep/meepSweep.py
-|4,52,1,0,1556678419,"~/Documents/meep/meepSweep.py"
-'5  1  0  ~/Documents/meep/meepSweep.py
-|4,53,1,0,1556678419,"~/Documents/meep/meepSweep.py"
-'6  10  0  ~/.vim/vimrc
-|4,54,10,0,1556678346,"~/.vim/vimrc"
-'7  10  0  ~/.vim/vimrc
-|4,55,10,0,1556678346,"~/.vim/vimrc"
-'8  10  0  ~/.vim/vimrc
-|4,56,10,0,1556678346,"~/.vim/vimrc"
-'9  10  0  ~/.vim/vimrc
-|4,57,10,0,1556678346,"~/.vim/vimrc"
+'0  1  0  ~/Documents/meep/batchArc.py
+|4,48,1,0,1556808033,"~/Documents/meep/batchArc.py"
+'1  1  1  ~/.vim/vimrc
+|4,49,1,1,1556808030,"~/.vim/vimrc"
+'2  1  0  ~/Documents/meep/batchArc.py
+|4,50,1,0,1556808004,"~/Documents/meep/batchArc.py"
+'3  154  4  ~/Documents/meep/batchArc.py
+|4,51,154,4,1556807996,"~/Documents/meep/batchArc.py"
+'4  154  4  ~/Documents/meep/batchArc.py
+|4,52,154,4,1556807996,"~/Documents/meep/batchArc.py"
+'5  154  4  ~/Documents/meep/batchArc.py
+|4,53,154,4,1556807996,"~/Documents/meep/batchArc.py"
+'6  154  4  ~/Documents/meep/batchArc.py
+|4,54,154,4,1556807996,"~/Documents/meep/batchArc.py"
+'7  3  0  ~/.vim/vimrc
+|4,55,3,0,1556761483,"~/.vim/vimrc"
+'8  3  0  ~/.vim/vimrc
+|4,56,3,0,1556761483,"~/.vim/vimrc"
+'9  23  8  ~/.vim/vimrc
+|4,57,23,8,1556761404,"~/.vim/vimrc"
 
 # Jumplist (newest first):
--'  27  3  ~/.vim/vimrc
-|4,39,27,3,1556682986,"~/.vim/vimrc"
--'  23  10  ~/.vim/vimrc
-|4,39,23,10,1556682937,"~/.vim/vimrc"
+-'  1  0  ~/Documents/meep/batchArc.py
+|4,39,1,0,1556808033,"~/Documents/meep/batchArc.py"
+-'  1  1  ~/.vim/vimrc
+|4,39,1,1,1556808030,"~/.vim/vimrc"
+-'  1  1  ~/.vim/vimrc
+|4,39,1,1,1556808030,"~/.vim/vimrc"
+-'  1  0  ~/Documents/meep/batchArc.py
+|4,39,1,0,1556808004,"~/Documents/meep/batchArc.py"
+-'  1  0  ~/Documents/meep/batchArc.py
+|4,39,1,0,1556808004,"~/Documents/meep/batchArc.py"
+-'  154  4  ~/Documents/meep/batchArc.py
+|4,39,154,4,1556807996,"~/Documents/meep/batchArc.py"
+-'  154  4  ~/Documents/meep/batchArc.py
+|4,39,154,4,1556807996,"~/Documents/meep/batchArc.py"
+-'  154  4  ~/Documents/meep/batchArc.py
+|4,39,154,4,1556807996,"~/Documents/meep/batchArc.py"
+-'  154  4  ~/Documents/meep/batchArc.py
+|4,39,154,4,1556807996,"~/Documents/meep/batchArc.py"
+-'  154  4  ~/Documents/meep/batchArc.py
+|4,39,154,4,1556807996,"~/Documents/meep/batchArc.py"
+-'  186  4  ~/Documents/meep/batchArc.py
+|4,39,186,4,1556807940,"~/Documents/meep/batchArc.py"
+-'  186  4  ~/Documents/meep/batchArc.py
+|4,39,186,4,1556807940,"~/Documents/meep/batchArc.py"
+-'  186  4  ~/Documents/meep/batchArc.py
+|4,39,186,4,1556807940,"~/Documents/meep/batchArc.py"
+-'  186  4  ~/Documents/meep/batchArc.py
+|4,39,186,4,1556807940,"~/Documents/meep/batchArc.py"
+-'  186  4  ~/Documents/meep/batchArc.py
+|4,39,186,4,1556807940,"~/Documents/meep/batchArc.py"
+-'  65  4  ~/Documents/meep/batchArc.py
+|4,39,65,4,1556807912,"~/Documents/meep/batchArc.py"
+-'  65  4  ~/Documents/meep/batchArc.py
+|4,39,65,4,1556807912,"~/Documents/meep/batchArc.py"
+-'  65  4  ~/Documents/meep/batchArc.py
+|4,39,65,4,1556807912,"~/Documents/meep/batchArc.py"
+-'  65  4  ~/Documents/meep/batchArc.py
+|4,39,65,4,1556807912,"~/Documents/meep/batchArc.py"
+-'  65  4  ~/Documents/meep/batchArc.py
+|4,39,65,4,1556807912,"~/Documents/meep/batchArc.py"
+-'  1  0  ~/Documents/meep/batchArc.py
+|4,39,1,0,1556807089,"~/Documents/meep/batchArc.py"
+-'  1  0  ~/Documents/meep/batchArc.py
+|4,39,1,0,1556807089,"~/Documents/meep/batchArc.py"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
+-'  3  0  ~/.vim/vimrc
+|4,39,3,0,1556761483,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556682905,"~/.vim/vimrc"
--'  6  0  ~/.vim/vimrc
-|4,39,6,0,1556682904,"~/.vim/vimrc"
--'  6  0  ~/.vim/vimrc
-|4,39,6,0,1556682904,"~/.vim/vimrc"
+|4,39,1,0,1556761451,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556682389,"~/.vim/vimrc"
--'  9  0  ~/Documents/meep/meepSweep.py
-|4,39,9,0,1556682386,"~/Documents/meep/meepSweep.py"
--'  9  0  ~/Documents/meep/meepSweep.py
-|4,39,9,0,1556682386,"~/Documents/meep/meepSweep.py"
--'  9  0  ~/Documents/meep/meepSweep.py
-|4,39,9,0,1556682386,"~/Documents/meep/meepSweep.py"
--'  9  0  ~/Documents/meep/meepSweep.py
-|4,39,9,0,1556682386,"~/Documents/meep/meepSweep.py"
--'  13  76  ~/Documents/meep/meepSweep.py
-|4,39,13,76,1556678590,"~/Documents/meep/meepSweep.py"
--'  13  76  ~/Documents/meep/meepSweep.py
-|4,39,13,76,1556678590,"~/Documents/meep/meepSweep.py"
--'  13  76  ~/Documents/meep/meepSweep.py
-|4,39,13,76,1556678590,"~/Documents/meep/meepSweep.py"
--'  13  76  ~/Documents/meep/meepSweep.py
-|4,39,13,76,1556678590,"~/Documents/meep/meepSweep.py"
--'  14  4  ~/Documents/meep/meepSweep.py
-|4,39,14,4,1556678535,"~/Documents/meep/meepSweep.py"
--'  14  4  ~/Documents/meep/meepSweep.py
-|4,39,14,4,1556678535,"~/Documents/meep/meepSweep.py"
--'  14  4  ~/Documents/meep/meepSweep.py
-|4,39,14,4,1556678535,"~/Documents/meep/meepSweep.py"
--'  14  4  ~/Documents/meep/meepSweep.py
-|4,39,14,4,1556678535,"~/Documents/meep/meepSweep.py"
--'  1  0  ~/Documents/meep/meepSweep.py
-|4,39,1,0,1556678481,"~/Documents/meep/meepSweep.py"
--'  1  0  ~/Documents/meep/meepSweep.py
-|4,39,1,0,1556678481,"~/Documents/meep/meepSweep.py"
--'  1  0  ~/Documents/meep/meepSweep.py
-|4,39,1,0,1556678481,"~/Documents/meep/meepSweep.py"
--'  1  0  ~/Documents/meep/meepSweep.py
-|4,39,1,0,1556678481,"~/Documents/meep/meepSweep.py"
--'  1  0  ~/Documents/meep/meepSweep.py
-|4,39,1,0,1556678419,"~/Documents/meep/meepSweep.py"
--'  1  0  ~/Documents/meep/meepSweep.py
-|4,39,1,0,1556678419,"~/Documents/meep/meepSweep.py"
--'  1  0  ~/Documents/meep/meepSweep.py
-|4,39,1,0,1556678419,"~/Documents/meep/meepSweep.py"
--'  1  0  ~/Documents/meep/meepSweep.py
-|4,39,1,0,1556678419,"~/Documents/meep/meepSweep.py"
--'  10  0  ~/.vim/vimrc
-|4,39,10,0,1556678346,"~/.vim/vimrc"
--'  10  0  ~/.vim/vimrc
-|4,39,10,0,1556678346,"~/.vim/vimrc"
--'  10  0  ~/.vim/vimrc
-|4,39,10,0,1556678346,"~/.vim/vimrc"
--'  10  0  ~/.vim/vimrc
-|4,39,10,0,1556678346,"~/.vim/vimrc"
--'  10  0  ~/.vim/vimrc
-|4,39,10,0,1556678346,"~/.vim/vimrc"
--'  10  0  ~/.vim/vimrc
-|4,39,10,0,1556678346,"~/.vim/vimrc"
+|4,39,1,0,1556761451,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678337,"~/.vim/vimrc"
+|4,39,1,0,1556761451,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678337,"~/.vim/vimrc"
+|4,39,1,0,1556761451,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678337,"~/.vim/vimrc"
+|4,39,1,0,1556761451,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678337,"~/.vim/vimrc"
--'  32  12  ~/.vim/vimrc
-|4,39,32,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
--'  32  12  ~/.vim/vimrc
-|4,39,32,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
--'  31  12  ~/.vim/vimrc
-|4,39,31,12,1556678325,"~/.vim/vimrc"
+|4,39,1,0,1556761451,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678089,"~/.vim/vimrc"
+|4,39,1,0,1556761451,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678089,"~/.vim/vimrc"
+|4,39,1,0,1556761451,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
+-'  23  8  ~/.vim/vimrc
+|4,39,23,8,1556761404,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678089,"~/.vim/vimrc"
+|4,39,1,0,1556761390,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678089,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
--'  15  0  ~/.vim/vimrc
-|4,39,15,0,1556678031,"~/.vim/vimrc"
+|4,39,1,0,1556761390,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678024,"~/.vim/vimrc"
+|4,39,1,0,1556761390,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678024,"~/.vim/vimrc"
+|4,39,1,0,1556761390,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678024,"~/.vim/vimrc"
+|4,39,1,0,1556761390,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556678024,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
--'  10  31  ~/.vim/vimrc
-|4,39,10,31,1556678023,"~/.vim/vimrc"
+|4,39,1,0,1556761390,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556677905,"~/.vim/vimrc"
+|4,39,1,0,1556761390,"~/.vim/vimrc"
 -'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556677905,"~/.vim/vimrc"
--'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556677905,"~/.vim/vimrc"
--'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556677905,"~/.vim/vimrc"
--'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556677828,"~/.vim/vimrc"
--'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556677828,"~/.vim/vimrc"
--'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556677828,"~/.vim/vimrc"
--'  1  0  ~/.vim/vimrc
-|4,39,1,0,1556677828,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
--'  5  19  ~/.vim/vimrc
-|4,39,5,19,1556677799,"~/.vim/vimrc"
+|4,39,1,0,1556761390,"~/.vim/vimrc"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
+-'  21  0  ~/Documents/dataGen/sweepGap.sh
+|4,39,21,0,1556732142,"~/Documents/dataGen/sweepGap.sh"
 
 # History of marks within files (newest to oldest):
 
+> ~/Documents/meep/batchArc.py
+	*	1556808032	0
+	"	1	0
+	.	181	0
+	+	181	0
+
 > ~/.vim/vimrc
-	*	1556682983	0
-	"	27	3
-	^	26	0
-	.	19	0
+	*	1556808028	0
+	"	1	1
+	^	1	2
+	.	1	1
 	+	1	0
 	+	6	19
 	+	1	32
@@ -404,18 +416,31 @@
 	+	9	0
 	+	16	0
 	+	10	31
-	+	24	14
+	+	25	14
 	+	20	13
-	+	28	12
-	+	32	12
-	+	30	16
-	+	33	16
-	+	31	50
-	+	36	32
-	+	35	63
-	+	37	0
+	+	29	12
+	+	33	12
+	+	31	16
+	+	34	16
+	+	32	50
+	+	37	32
+	+	36	63
+	+	38	0
 	+	19	11
 	+	19	0
+	+	23	8
+	+	1	1
+
+> ~/Documents/dataGen/sweepGap.sh
+	*	1556732140	0
+	"	21	0
+
+> ~/Documents/dataGen/alecScripts/sweepBent.py
+	*	1556730999	0
+	"	135	11
+	^	109	11
+	.	109	11
+	+	109	11
 
 > ~/Documents/meep/meepSweep.py
 	*	1556678610	0
