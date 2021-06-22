@@ -3,8 +3,18 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sjl/badwolf'
 Plug 'tomasiser/vim-code-dark'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
+
+" GitGutter options
+set updatetime=100
+
+" Setup airline with basically all defaults
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 "Let's viminfo be in .vim folder
 set viminfo+=n~/.vim/viminfo
@@ -25,7 +35,6 @@ set ruler
 set showcmd
 set cursorline
 filetype plugin indent on
-
 set wildmenu
 set showmatch
 
