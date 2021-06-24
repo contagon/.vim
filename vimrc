@@ -33,8 +33,8 @@ let g:lightline = {
   \   'filetype': 'MyFiletype',
   \   }
   \}
-let g:lightline.separator = {'left': '', 'right': ''}
-let g:lightline.subseparator = {'left': '', 'right': ''}
+let g:lightline.separator = {'left': "\ue0b8", 'right': "\ue0be"}
+let g:lightline.subseparator = {'left': "\ue0b9", 'right': "\ue0b9"}
 set showtabline=2  " Show tabline
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
