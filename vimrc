@@ -1,18 +1,22 @@
 " vim-plug plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'sjl/badwolf'
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'tomasiser/vim-code-dark'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-if has('nvim') || has('patch-8.0.902')
-  Plug 'mhinz/vim-signify'
-else
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-endif
-Plug 'tpope/vim-fugitive'
+    Plug 'sjl/badwolf'
+    Plug 'itchyny/lightline.vim'
+    Plug 'mengelbrecht/lightline-bufferline'
+    Plug 'tomasiser/vim-code-dark'
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    if has('nvim') || has('patch-8.0.902')
+      Plug 'mhinz/vim-signify'
+    else
+      Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+    endif
+    Plug 'tpope/vim-fugitive'
+    Plug 'Yggdroot/indentLine'
+    Plug 'tpope/vim-commentary'
+    Plug 'preservim/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -26,12 +30,15 @@ let g:lightline = {
   \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#head',
+  \   'filetype': 'MyFiletype',
   \   }
   \}
 let g:lightline.separator = {'left': '', 'right': ''}
 let g:lightline.subseparator = {'left': '', 'right': ''}
 set showtabline=2  " Show tabline
-set guioptions-=e  " Don't use GUI tabline
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
 
 " lightline buffer
 let g:lightline.tabline          = {'left': [['buffers']], 'right': []}
@@ -39,6 +46,9 @@ let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#icon_position = 'right'
 
 " Edit vimrc file
 nnoremap <Leader>vs :source ~/.vim/vimrc<CR>
@@ -48,6 +58,15 @@ nnoremap <Leader>ve :e ~/.vim/vimrc<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>p :Rg<CR>
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
+" NERDtree
+nnoremap <C-b> :NERDTreeToggle<CR>
+
+" devicons
+set encoding=UTF-8
+"set guifont=DejaVuSansMono\ Nerd\ Font\ 11
+let g:webdevicons_enable_nerdtree = 1
+
 
 set nocp
 filetype plugin on
@@ -89,3 +108,5 @@ setlocal spell
 set spelllang=en
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
+" indent lines
+let g:indentLine_char = '┊'
