@@ -110,7 +110,7 @@ code-server:
 	curl -fsSL https://code-server.dev/install.sh | sh
 	sudo systemctl enable --now code-server@$USER
 
-font myfont="Hack" folder="~/nerd-fonts":
+font myfont="DejaVuSansMono":
     #!/usr/bin/env bash
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{myfont}}.zip 
     unzip {{myfont}}.zip -d ~/.fonts
