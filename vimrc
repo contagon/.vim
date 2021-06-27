@@ -62,6 +62,11 @@ nnoremap <Leader>o o<Esc>0"_D
 nnoremap <Leader>O O<Esc>0"_D
 
 " https://vim.fandom.com/wiki/Moving_lines_up_or_down
+" Could also put the executes in for loop with all chars, but could break
+" things (such as macros)
+" https://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
+execute "set <A-k>=\ek"
+execute "set <A-j>=\ej"
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -103,7 +108,7 @@ let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#min_buffer_count = 0
 let g:lightline#bufferline#icon_position = 'right'
 
 " FZF
