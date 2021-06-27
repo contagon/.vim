@@ -43,13 +43,24 @@ syntax enable
 colorscheme codedark
 
 """"" KEY REMAPPINGS """""
+let mapleader = "\<Space>"
 nnoremap <Leader>vs :source ~/.vim/vimrc<CR>
 nnoremap <Leader>ve :e ~/.vim/vimrc<CR>
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <Leader>p :Rg<CR>
-nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-nnoremap gb :ls<CR>:b<Space>
+nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <Leader>p :Buffers<CR>
+" nnoremap <silent> <Leader>p :Rg<CR>
+
+nnoremap <silent> <Leader>b :NERDTreeToggle<CR>
+
+nnoremap <C-l> :bn<CR>
+nnoremap <C-h> :bp<CR>
+nnoremap <Leader>d :bp \| bd #<CR>
+
 nnoremap <esc><esc> :noh<return><esc>
+
+nnoremap <Leader>o o<Esc>0"_D
+nnoremap <Leader>O O<Esc>0"_D
+
 " Training wheels to break bad habits
 noremap <Up> <NOP>
 noremap <Down> <NOP>
