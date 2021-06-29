@@ -43,13 +43,37 @@ syntax enable
 colorscheme codedark
 
 """"" KEY REMAPPINGS """""
+let mapleader = "\<Space>"
 nnoremap <Leader>vs :source ~/.vim/vimrc<CR>
 nnoremap <Leader>ve :e ~/.vim/vimrc<CR>
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <Leader>p :Rg<CR>
-nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-nnoremap gb :ls<CR>:b<Space>
+nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <Leader>p :Buffers<CR>
+" nnoremap <silent> <Leader>p :Rg<CR>
+
+nnoremap <silent> <Leader>b :NERDTreeToggle<CR>
+
+nnoremap <C-l> :bn<CR>
+nnoremap <C-h> :bp<CR>
+nnoremap <Leader>d :bp \| bd #<CR>
+
 nnoremap <esc><esc> :noh<return><esc>
+
+nnoremap <Leader>o o<Esc>0"_D
+nnoremap <Leader>O O<Esc>0"_D
+
+" https://vim.fandom.com/wiki/Moving_lines_up_or_down
+" Could also put the executes in for loop with all chars, but could break
+" things (such as macros)
+" https://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
+execute "set <A-k>=\ek"
+execute "set <A-j>=\ej"
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " Training wheels to break bad habits
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -84,7 +108,7 @@ let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#min_buffer_count = 0
 let g:lightline#bufferline#icon_position = 'right'
 
 " FZF
