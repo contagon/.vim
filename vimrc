@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
+
 """"" BASIC SETUP """""
 set relativenumber
 set ruler
@@ -33,14 +34,20 @@ set autoindent
 set backspace=indent,eol,start
 set hlsearch
 set incsearch
+set autoread
+set nowrap
 " Control Tabs
 set tabstop=4
 set softtabstop=4
-set expandtab
 set shiftwidth=4
+set expandtab
 " Colors
 syntax enable
 colorscheme codedark
+" No backup files to clean up
+set noswapfile
+set nobackup
+set wb
 
 """"" KEY REMAPPINGS """""
 let mapleader = "\<Space>"
@@ -52,19 +59,22 @@ nnoremap <silent> <Leader>p :Buffers<CR>
 
 nnoremap <silent> <Leader>b :NERDTreeToggle<CR>
 
-nnoremap <C-l> :bn<CR>
-nnoremap <C-h> :bp<CR>
-nnoremap <Leader>d :bp \| bd #<CR>
-
 nnoremap <esc><esc> :noh<return><esc>
 
 nnoremap <Leader>o o<Esc>0"_D
 nnoremap <Leader>O O<Esc>0"_D
 
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
+
 " https://vim.fandom.com/wiki/Moving_lines_up_or_down
 " Could also put the executes in for loop with all chars, but could break
 " things (such as macros)
 " https://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
+set timeoutlen=1000
+set ttimeoutlen=5
 execute "set <A-k>=\ek"
 execute "set <A-j>=\ej"
 nnoremap <A-j> :m .+1<CR>==
@@ -74,11 +84,18 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+execute "set <A-h>=\eh"
+execute "set <A-l>=\el"
+nnoremap <A-l> :bn<CR>
+nnoremap <A-h> :bp<CR>
+nnoremap <Leader>d :bp \| bd #<CR>
+
 " Training wheels to break bad habits
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
 
 """"" PLUGIN CONFIGURATION """""
 " lightline
