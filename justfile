@@ -7,7 +7,7 @@ base:
     sudo apt-get install -qy git cmake build-essential gdebi gthumb apt-transport-https xclip gcc
 
 vim: base
-    sudo apt-get install -qy vim
+    sudo apt-get install -qy vim-gtk
     git clone https://github.com/contagon/.vim ~/.vim
     vim +'PlugInstall --sync' +qa
 
@@ -107,8 +107,8 @@ unreal version folder="~/UnrealEngine":
     make -j{{n_cpu}}
 
 code-server:
-	curl -fsSL https://code-server.dev/install.sh | sh
-	sudo systemctl enable --now code-server@$USER
+    curl -fsSL https://code-server.dev/install.sh | sh
+    sudo systemctl enable --now code-server@$USER
 
 font myfont="DejaVuSansMono":
     #!/usr/bin/env bash
@@ -117,3 +117,10 @@ font myfont="DejaVuSansMono":
     fc-cache -fv
     rm {{myfont}}.zip
 
+tmux:
+    #!/usr/bin/env bash
+    sudo apt install -qy tmux
+    REPO=$(pwd)
+    cd ~/
+    ln -s $REPO/.tmux.conf .tmux.conf
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
