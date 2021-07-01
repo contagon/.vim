@@ -18,6 +18,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
 
+    Plug 'christoomey/vim-tmux-navigator'
+
 call plug#end()
 
 
@@ -64,10 +66,10 @@ nnoremap <esc><esc> :noh<return><esc>
 nnoremap <Leader>o o<Esc>0"_D
 nnoremap <Leader>O O<Esc>0"_D
 
-nnoremap <silent> <C-k> :wincmd k<CR>
-nnoremap <silent> <C-j> :wincmd j<CR>
-nnoremap <silent> <C-h> :wincmd h<CR>
-nnoremap <silent> <C-l> :wincmd l<CR>
+" nnoremap <silent> <C-k> :wincmd k<CR>
+" nnoremap <silent> <C-j> :wincmd j<CR>
+" nnoremap <silent> <C-h> :wincmd h<CR>
+" nnoremap <silent> <C-l> :wincmd l<CR>
 
 " https://vim.fandom.com/wiki/Moving_lines_up_or_down
 " Could also put the executes in for loop with all chars, but could break
