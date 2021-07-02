@@ -1,14 +1,13 @@
 ssh_loc := "/home/$USER/.ssh/id_rsa"
 n_cpu   := "$(($(grep -c ^processor /proc/cpuinfo)-2))"
 
-all: base vim
-
 base: 
-    sudo apt-get install -qy git cmake build-essential gdebi gthumb apt-transport-https xclip gcc
+    sudo apt-get install -qy git cmake build-essential gdebi gthumb apt-transport-https xclip gcc gnome-terminal
+    git config --global user.email "contagon6@gmail.com"
+    git config --global user.name "Easton Potokar"
 
 vim: base
     sudo apt-get install -qy vim-gtk
-    git clone https://github.com/contagon/.vim ~/.vim
     vim +'PlugInstall --sync' +qa
 
 launcher: base
@@ -124,3 +123,9 @@ tmux:
     cd ~/
     ln -s $REPO/.tmux.conf .tmux.conf
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+nord:
+    #!/usr/bin/env bash
+    sudo apt-get install dconf-cli uuid-runtime
+    export TERMINAL=gnome-terminal
+    bash -c "$(wget -qO- https://raw.githubusercontent.com/Mayccoll/Gogh/master/themes/nord.sh)"
