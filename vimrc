@@ -1,8 +1,6 @@
 """"" ALL PLUGINS """""
 call plug#begin('~/.vim/plugged')
 
-    Plug 'sjl/badwolf'
-    Plug 'tomasiser/vim-code-dark'
     Plug 'itchyny/lightline.vim'
     Plug 'mengelbrecht/lightline-bufferline'
     Plug 'junegunn/fzf.vim'
@@ -17,6 +15,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
+
+    Plug 'tomasiser/vim-code-dark'
+    Plug 'arcticicestudio/nord-vim'
 
     Plug 'christoomey/vim-tmux-navigator'
 
@@ -45,7 +46,7 @@ set shiftwidth=4
 set expandtab
 " Colors
 syntax enable
-colorscheme codedark
+colorscheme nord
 " No backup files to clean up
 set noswapfile
 set nobackup
@@ -104,6 +105,7 @@ noremap <Right> <NOP>
 set laststatus=2
 set noshowmode
 let g:lightline = {
+  \   'colorscheme': 'nord',
   \   'active': {
   \     'left':[['mode','paste'],['gitbranch','readonly']],
   \     'right': [['lineinfo'], ['percent'], ['filetype']]
