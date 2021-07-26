@@ -1,14 +1,37 @@
 ssh_loc := "/home/$USER/.ssh/id_rsa"
 n_cpu   := "$(($(grep -c ^processor /proc/cpuinfo)-2))"
 
+_install package:
+    #!/usr/bin/env bash
+    PKG_OK=$(dpkg-query -W --showformat='${Status}\n' {{package}}|grep "install ok installed")
+    if [ "" = "$PKG_OK" ]; then
+        echo "No {{package}}. Setting up {{package}}."
+        sudo apt-get -y install {{package}}
+    fi
+
 base: 
-    sudo apt-get install -qy git cmake build-essential gdebi gthumb apt-transport-https xclip gcc gnome-terminal
+    sudo apt-get install -qy git cmake build-essential gdebi gthumb apt-transport-https xclip gcc gnome-terminal 
     git config --global user.email "contagon6@gmail.com"
     git config --global user.name "Easton Potokar"
 
-vim: base
+zsh: (_install "zsh") (_install "stow")
+    stow zsh
+    sudo chsh -s $(which zsh) $(whoami)
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+vim: (_innstall "stow") 
     sudo apt-get install -qy vim-gtk
+    stow vim
     vim +'PlugInstall --sync' +qa
+
+nvim: base
+    curl -fLO https://glare.now.sh/neovim/neovim/nvim.appimage
+    chmod +x nvim.appimage
+    sudo chown root:root nvim.appimage
+    sudo mv nvim.appimage /usr/bin/nvim
+    stow nvim
+    nvim +'PlugInstall --sync' +qa
 
 launcher: base
     curl -fLO https://glare.now.sh/TheAssassin/AppImageLauncher/amd64.deb
@@ -116,12 +139,10 @@ font myfont="DejaVuSansMono":
     fc-cache -fv
     rm {{myfont}}.zip
 
-tmux:
+tmux: (_install "zsh")
     #!/usr/bin/env bash
     sudo apt install -qy tmux
-    REPO=$(pwd)
-    cd ~/
-    ln -s $REPO/.tmux.conf .tmux.conf
+    stow tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 nord:

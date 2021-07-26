@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'tomasiser/vim-code-dark'
     Plug 'arcticicestudio/nord-vim'
+    Plug 'NoahTheDuke/vim-just'
 
     Plug 'christoomey/vim-tmux-navigator'
 
