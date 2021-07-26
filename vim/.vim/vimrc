@@ -21,10 +21,14 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'christoomey/vim-tmux-navigator'
 
+    Plug 'junegunn/vim-peekaboo'
+    Plug 'unblevable/quick-scope'
+
 call plug#end()
 
 
 """"" BASIC SETUP """""
+set clipboard=unnamed
 set relativenumber
 set ruler
 set showcmd
@@ -51,12 +55,16 @@ colorscheme nord
 set noswapfile
 set nobackup
 set wb
+" Persistent Undo
+set undodir=~/.vim/undo_dir
+set undofile
 
 """"" KEY REMAPPINGS """""
+inoremap jj <Esc>
 let mapleader = "\<Space>"
 nnoremap <Leader>vs :source ~/.vim/vimrc<CR>
 nnoremap <Leader>ve :e ~/.vim/vimrc<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>p :Buffers<CR>
 " nnoremap <silent> <Leader>p :Rg<CR>
 
@@ -67,25 +75,23 @@ nnoremap <esc><esc> :noh<return><esc>
 nnoremap <Leader>o o<Esc>0"_D
 nnoremap <Leader>O O<Esc>0"_D
 
-" nnoremap <silent> <C-k> :wincmd k<CR>
-" nnoremap <silent> <C-j> :wincmd j<CR>
-" nnoremap <silent> <C-h> :wincmd h<CR>
-" nnoremap <silent> <C-l> :wincmd l<CR>
-
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
+   
 " https://vim.fandom.com/wiki/Moving_lines_up_or_down
 " Could also put the executes in for loop with all chars, but could break
 " things (such as macros)
 " https://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
 set timeoutlen=1000
 set ttimeoutlen=5
-execute "set <A-k>=\ek"
-execute "set <A-j>=\ej"
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" execute "set <A-k>=\ek"
+" execute "set <A-j>=\ej"
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
 
 execute "set <A-h>=\eh"
 execute "set <A-l>=\el"
