@@ -1,6 +1,6 @@
-# My Vim Configuration
+# My dotfiles
 
-## Resources
+## Vim Resources
  - https://github.com/romainl/idiomatic-vimrc
  - https://github.com/iggredible/Learn-Vim
  - https://blog.joren.ga/tools/vim-learning-steps
