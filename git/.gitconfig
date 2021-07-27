@@ -1,0 +1,9 @@
+[user]
+	email = contagon6@gmail.com
+	name = Easton Potokar
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false

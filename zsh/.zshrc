@@ -1,3 +1,12 @@
+alias c='clear'
+
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+
 # Force prompt to start on bottom
 # https://github.com/romkatv/powerlevel10k/issues/563
 # printf '\n%.0s' {1..100}
@@ -138,5 +147,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-alias c='clear'

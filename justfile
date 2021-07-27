@@ -10,9 +10,7 @@ _install package:
     fi
 
 base: 
-    sudo apt-get install -qy git cmake build-essential gthumb apt-transport-https xclip gcc gnome-terminal 
-    git config --global user.email "contagon6@gmail.com"
-    git config --global user.name "Easton Potokar"
+    sudo apt-get install -qy git cmake build-essential gthumb apt-transport-https xclip gcc gnome-terminal ripgrep fzf
 
 zsh: (_install "zsh") (_install "stow")
     sudo chsh -s $(which zsh) $(whoami)
