@@ -17,12 +17,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ryanoasis/vim-devicons'
 
     Plug 'tomasiser/vim-code-dark'
-    Plug 'arcticicestudio/nord-vim'
+    Plug 'shaunsingh/nord.nvim'
 
     Plug 'christoomey/vim-tmux-navigator'
 
     Plug 'junegunn/vim-peekaboo'
     Plug 'unblevable/quick-scope'
+    Plug 'NoahTheDuke/vim-just'
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-lua/completion-nvim'
@@ -82,7 +83,6 @@ EOF
 
 """"" BASIC SETUP """""
 set clipboard=unnamed
-set relativenumber
 set ruler
 set showcmd
 set cursorline
