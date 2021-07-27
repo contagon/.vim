@@ -1,4 +1,5 @@
 alias c='clear'
+alias gle='google'
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
@@ -95,6 +96,14 @@ plugins=(
     docker
     docker-compose
     python
+    zsh_reload
+    last-working-dir
+    fancy-ctrl-z
+    dirhistory
+    web-search
+    sudo
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 # enable completion for docker
