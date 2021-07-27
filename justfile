@@ -6,26 +6,26 @@ _install package:
     PKG_OK=$(dpkg-query -W --showformat='${Status}\n' {{package}}|grep "install ok installed")
     if [ "" = "$PKG_OK" ]; then
         echo "No {{package}}. Setting up {{package}}."
-        sudo apt-get -y install {{package}}
+        sudo apt-get -qy install {{package}}
     fi
 
 base: 
-    sudo apt-get install -qy git cmake build-essential gdebi gthumb apt-transport-https xclip gcc gnome-terminal 
+    sudo apt-get install -qy git cmake build-essential gthumb apt-transport-https xclip gcc gnome-terminal 
     git config --global user.email "contagon6@gmail.com"
     git config --global user.name "Easton Potokar"
 
 zsh: (_install "zsh") (_install "stow")
-    stow zsh
     sudo chsh -s $(which zsh) $(whoami)
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    rm ~/.zshrc
+    stow zsh
 
-vim: (_innstall "stow") 
-    sudo apt-get install -qy vim-gtk
+vim: (_install "stow") (_install "vim-gtk")
     stow vim
     vim +'PlugInstall --sync' +qa
 
-nvim: base
+nvim: 
     curl -fLO https://glare.now.sh/neovim/neovim/nvim.appimage
     chmod +x nvim.appimage
     sudo chown root:root nvim.appimage
@@ -33,11 +33,24 @@ nvim: base
     stow nvim
     nvim +'PlugInstall --sync' +qa
 
-launcher: base
-    curl -fLO https://glare.now.sh/TheAssassin/AppImageLauncher/amd64.deb
-    sudo gdebi -n amd64.deb
-    rm amd64.deb    
-    mkdir -p ~/Applications
+font myfont="Melso":
+    #!/usr/bin/env bash
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{myfont}}.zip 
+    unzip {{myfont}}.zip -d ~/.fonts
+    fc-cache -fv
+    rm {{myfont}}.zip
+
+tmux: (_install "stow") (_install "tmux")
+    stow tmux
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+nord: (_install "dconf-cli") (_install "uuid-runtime") (_install "gnome-tweak-tool")
+    #!/usr/bin/env bash
+    # install terminal theme
+    export TERMINAL=gnome-terminal
+    bash -c "$(wget -qO- https://raw.githubusercontent.com/Mayccoll/Gogh/master/themes/nord.sh)"
+    # install ubuntu theme
+    git clone https://github.com/EliverLara/Nordic.git ~/.themes/nordic
 
 obsidian: launcher 
     curl -fLO https://glare.now.sh/obsidianmd/obsidian-releases/.AppImage
@@ -110,6 +123,11 @@ ssh: base
     xclip -selection clipboard < {{ssh_loc}}.pub
 
 ### Optional ones that aren't ran by default
+launcher: (_install "gdebi") 
+    curl -fLO https://glare.now.sh/TheAssassin/AppImageLauncher/amd64.deb
+    sudo gdebi -n amd64.deb
+    rm amd64.deb    
+    mkdir -p ~/Applications
 
 clone folder list:
     #!/usr/bin/env bash
@@ -132,21 +150,3 @@ code-server:
     curl -fsSL https://code-server.dev/install.sh | sh
     sudo systemctl enable --now code-server@$USER
 
-font myfont="DejaVuSansMono":
-    #!/usr/bin/env bash
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{myfont}}.zip 
-    unzip {{myfont}}.zip -d ~/.fonts
-    fc-cache -fv
-    rm {{myfont}}.zip
-
-tmux: (_install "zsh")
-    #!/usr/bin/env bash
-    sudo apt install -qy tmux
-    stow tmux
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-nord:
-    #!/usr/bin/env bash
-    sudo apt-get install dconf-cli uuid-runtime
-    export TERMINAL=gnome-terminal
-    bash -c "$(wget -qO- https://raw.githubusercontent.com/Mayccoll/Gogh/master/themes/nord.sh)"
