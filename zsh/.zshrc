@@ -91,17 +91,21 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# To checkout: autojump, jump
 plugins=(
-    git
+    copyfile
     docker
     docker-compose
-    python
-    zsh_reload
-    last-working-dir
-    fancy-ctrl-z
     dirhistory
-    web-search
+    fancy-ctrl-z
+    git
+    last-working-dir
+    python
+    safe-paste
     sudo
+    tmux
+    web-search
+    zsh_reload
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
