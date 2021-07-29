@@ -1,6 +1,8 @@
 alias c='clear'
 alias gle='google'
 
+alias j='just --justfile ~/dotfiles/justfile --working-directory ~'
+
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
@@ -99,6 +101,7 @@ plugins=(
     dirhistory
     fancy-ctrl-z
     git
+    just
     last-working-dir
     python
     safe-paste

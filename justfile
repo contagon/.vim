@@ -23,6 +23,9 @@ zsh: (_install "zsh") (_install "stow")
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     rm ~/.zshrc
     stow zsh
+    # install justfile completions
+    mkdir ~/.oh-my-zsh/plugins/just
+    just --completions zsh > ~/.oh-my-zsh/plugins/just/_just
 
 vim: (_install "stow") (_install "vim-gtk")
     stow vim
