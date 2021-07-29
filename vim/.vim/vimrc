@@ -1,30 +1,39 @@
 """"" ALL PLUGINS """""
+if has('nvim')
+call plug#begin('~/.config/nvim/plugged')
+else
 call plug#begin('~/.vim/plugged')
-
+endif
+    " Make things pretty
     Plug 'itchyny/lightline.vim'
     Plug 'mengelbrecht/lightline-bufferline'
+    if has('nvim')
+        Plug 'shaunsingh/nord.nvim'
+    else
+        Plug 'arcticicestudio/nord-vim'
+    endif
+    Plug 'ryanoasis/vim-devicons'
+    
+    " fuzzy search
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+    " git stuff
     if has('nvim') || has('patch-8.0.902')
       Plug 'mhinz/vim-signify'
     else
       Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
     endif
     Plug 'tpope/vim-fugitive'
+
+    " Misc things to make line easier
     Plug 'Yggdroot/indentLine'
     Plug 'tpope/vim-commentary'
     Plug 'preservim/nerdtree'
-    Plug 'ryanoasis/vim-devicons'
-
-    Plug 'tomasiser/vim-code-dark'
-    Plug 'arcticicestudio/nord-vim'
     Plug 'NoahTheDuke/vim-just'
-
     Plug 'christoomey/vim-tmux-navigator'
-
     Plug 'junegunn/vim-peekaboo'
     Plug 'unblevable/quick-scope'
-
 call plug#end()
 
 
@@ -61,42 +70,28 @@ set wb
 set undodir=~/.vim/undo_dir
 set undofile
 
+
 """"" KEY REMAPPINGS """""
 inoremap jj <Esc>
 let mapleader = "\<Space>"
 nnoremap <Leader>vs :source ~/.vim/vimrc<CR>
 nnoremap <Leader>ve :e ~/.vim/vimrc<CR>
 nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <Leader>p :Buffers<CR>
-" nnoremap <silent> <Leader>p :Rg<CR>
+nnoremap <silent> <Leader>p :Rg<CR>
+" nnoremap <silent> <Leader>p :Buffers<CR>
 
 nnoremap <silent> <Leader>b :NERDTreeToggle<CR>
 
 nnoremap <esc><esc> :noh<return><esc>
 
-nnoremap <Leader>o o<Esc>0"_D
-nnoremap <Leader>O O<Esc>0"_D
-
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
    
-" https://vim.fandom.com/wiki/Moving_lines_up_or_down
-" Could also put the executes in for loop with all chars, but could break
-" things (such as macros)
-" https://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
-set timeoutlen=1000
-set ttimeoutlen=5
-" execute "set <A-k>=\ek"
-" execute "set <A-j>=\ej"
-" nnoremap <A-j> :m .+1<CR>==
-" nnoremap <A-k> :m .-2<CR>==
-" inoremap <A-j> <Esc>:m .+1<CR>==gi
-" inoremap <A-k> <Esc>:m .-2<CR>==gi
-" vnoremap <A-j> :m '>+1<CR>gv=gv
-" vnoremap <A-k> :m '<-2<CR>gv=gv
-
-execute "set <A-h>=\eh"
-execute "set <A-l>=\el"
+" Easy buffer switching
+if !has('nvim')
+    execute "set <A-h>=\eh"
+    execute "set <A-l>=\el"
+endif
 nnoremap <A-l> :bn<CR>
 nnoremap <A-h> :bp<CR>
 nnoremap <Leader>d :bp \| bd #<CR>
@@ -151,7 +146,9 @@ let g:webdevicons_enable_nerdtree = 1
 set updatetime=100
 
 "Let's viminfo be in .vim folder
-set viminfo+=n~/.vim/viminfo
+if !has('nvim')
+    set viminfo+=n~/.vim/viminfo
+endif
 
 " indent lines
 let g:indentLine_char = '┊'
