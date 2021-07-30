@@ -127,6 +127,7 @@ ssh: base
     eval `ssh-agent`
     ssh-add {{ssh_loc}}
     xclip -selection clipboard < {{ssh_loc}}.pub
+    cat {{ssh_loc}}.pub
 
 ### Optional ones that aren't ran by default
 launcher: (_install "gdebi") 

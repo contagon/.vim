@@ -96,6 +96,8 @@ nnoremap <A-l> :bn<CR>
 nnoremap <A-h> :bp<CR>
 nnoremap <Leader>d :bp \| bd #<CR>
 
+nnoremap gp `[v`]
+
 " Training wheels to break bad habits
 noremap <Up> <NOP>
 noremap <Down> <NOP>
