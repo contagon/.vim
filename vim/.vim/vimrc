@@ -69,6 +69,20 @@ set wb
 " Persistent Undo
 set undodir=~/.vim/undo_dir
 set undofile
+" reduce time waiting for timeout to end
+set timeoutlen=1000
+set ttimeoutlen=50
+ " set number of screen lines to keep above/below the cursor
+set scrolloff=8 
+ 
+" Easy buffer switching
+if !has('nvim')
+    execute "set <A-h>=\eh"
+    execute "set <A-l>=\el"
+endif
+nnoremap <A-l> :bn<CR>
+nnoremap <A-h> :bp<CR>
+nnoremap <Leader>d :bp \| bd #<CR>
 
 
 """"" KEY REMAPPINGS """""
@@ -82,19 +96,10 @@ nnoremap <silent> <Leader>p :Rg<CR>
 
 nnoremap <silent> <Leader>b :NERDTreeToggle<CR>
 
-nnoremap <esc><esc> :noh<return><esc>
+nnoremap <Leader>f :noh<return><esc>
 
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
-   
-" Easy buffer switching
-if !has('nvim')
-    execute "set <A-h>=\eh"
-    execute "set <A-l>=\el"
-endif
-nnoremap <A-l> :bn<CR>
-nnoremap <A-h> :bp<CR>
-nnoremap <Leader>d :bp \| bd #<CR>
 
 nnoremap gp `[v`]
 
