@@ -93,6 +93,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 # To checkout: autojump, jump
 plugins=(
+    conda-zsh-completion
     copyfile
     docker
     docker-compose
@@ -160,3 +161,4 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+source /opt/ros/noetic/setup.zsh
