@@ -25,6 +25,9 @@ zsh: (_install "zsh") (_install "stow")
     git clone https://github.com/esc/conda-zsh-completion ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/conda-zsh-completion
     rm ~/.zshrc
     stow zsh
+    # install justfile completions
+    mkdir ~/.oh-my-zsh/plugins/just
+    just --completions zsh > ~/.oh-my-zsh/plugins/just/_just
 
 vim: (_install "stow") (_install "vim-gtk")
     stow vim
@@ -126,6 +129,7 @@ ssh: base
     eval `ssh-agent`
     ssh-add {{ssh_loc}}
     xclip -selection clipboard < {{ssh_loc}}.pub
+    cat {{ssh_loc}}.pub
 
 ### Optional ones that aren't ran by default
 launcher: (_install "gdebi") 
