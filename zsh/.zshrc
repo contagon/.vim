@@ -109,7 +109,6 @@ plugins=(
     sudo
     tmux
     web-search
-    zsh_reload
     zsh-autosuggestions
     zsh-syntax-highlighting
 )

@@ -34,6 +34,8 @@ endif
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'junegunn/vim-peekaboo'
     Plug 'unblevable/quick-scope'
+    Plug 'psliwka/vim-smoothie'
+    Plug 'preservim/vimux'
 call plug#end()
 
 
@@ -159,3 +161,14 @@ endif
 
 " indent lines
 let g:indentLine_char = '┊'
+
+" Smooth scrol
+let g:smoothie_update_interval=10
+let g:smoothie_speed_linear_factor=40
+
+" Vimux
+let g:VimuxUseNearest = 1
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vi :VimuxInspectRunner<CR>
+map <Leader>vq :VimuxCloseRunner<CR>
