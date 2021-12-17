@@ -36,12 +36,14 @@ endif
     Plug 'unblevable/quick-scope'
     Plug 'psliwka/vim-smoothie'
     Plug 'preservim/vimux'
+    Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 
 """"" BASIC SETUP """""
 set clipboard=unnamed
-set relativenumber
+set norelativenumber
+set number
 set ruler
 set showcmd
 set cursorline
@@ -54,7 +56,7 @@ set backspace=indent,eol,start
 set hlsearch
 set incsearch
 set autoread
-set nowrap
+" set nowrap
 " Control Tabs
 set tabstop=4
 set softtabstop=4
@@ -172,3 +174,14 @@ map <Leader>vp :w \| VimuxPromptCommand<CR>
 map <Leader>vl :w \| VimuxRunLastCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 map <Leader>vq :VimuxCloseRunner<CR>
+
+" Testing wrapping settings
+" enable indentation
+set breakindent
+"
+" ident by an additional 2 characters on wrapped lines, when line >= 40
+" characters, put 'showbreak' at start of line
+set breakindentopt=shift:4,min:40,sbr
+"
+" " append '>>' to indent
+" set showbreak=>> 
