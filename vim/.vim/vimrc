@@ -84,12 +84,12 @@ if !has('nvim')
 endif
 nnoremap <A-l> :bn<CR>
 nnoremap <A-h> :bp<CR>
-nnoremap <Leader>d :bp \| bd #<CR>
 
 
 """"" KEY REMAPPINGS """""
 inoremap jj <Esc>
 let mapleader = "\<Space>"
+nnoremap <Leader>d :bp \| bd #<CR>
 nnoremap <Leader>vs :source ~/.vim/vimrc<CR>
 nnoremap <Leader>ve :e ~/.vim/vimrc<CR>
 nnoremap <silent> <C-p> :Files<CR>
@@ -168,7 +168,7 @@ let g:smoothie_speed_linear_factor=40
 
 " Vimux
 let g:VimuxUseNearest = 1
-map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vp :w \| VimuxPromptCommand<CR>
+map <Leader>vl :w \| VimuxRunLastCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 map <Leader>vq :VimuxCloseRunner<CR>
