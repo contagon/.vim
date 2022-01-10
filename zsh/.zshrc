@@ -163,7 +163,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-source /opt/ros/noetic/setup.zsh
 
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
