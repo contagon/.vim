@@ -9,9 +9,6 @@ _install package:
         sudo apt-get -qy install {{package}}
     fi
 
-base: 
-    sudo apt-get install -qy git cmake build-essential gthumb apt-transport-https xclip gcc gnome-terminal ripgrep fzf
-
 zsh: (_install "zsh") (_install "stow")
     sudo chsh -s $(which zsh) $(whoami)
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -29,9 +26,15 @@ zsh: (_install "zsh") (_install "stow")
     mkdir ~/.oh-my-zsh/plugins/just
     just --completions zsh > ~/.oh-my-zsh/plugins/just/_just
 
-vim: (_install "stow") (_install "vim-gtk")
+vim: (_install "stow") (_install "vim")
     stow vim
     vim +'PlugInstall --sync' +qa
+
+cloudflared: (_install "gdebi")
+    wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+    sudo gdebi -n cloudflared-linux-amd64.deb
+    rm cloudflared-linux-amd64.deb
+    echo "Host ssh.eastonpots.com\n  ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h" > ~/.ssh/config
 
 nvim: 
     curl -fLO https://glare.now.sh/neovim/neovim/nvim.appimage
@@ -41,9 +44,9 @@ nvim:
     stow nvim
     nvim +'PlugInstall --sync' +qa
 
-font myfont="Melso":
+font myfont="Meslo":
     #!/usr/bin/env bash
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{myfont}}.zip 
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{myfont}}.zip
     unzip {{myfont}}.zip -d ~/.fonts
     fc-cache -fv
     rm {{myfont}}.zip
@@ -64,28 +67,28 @@ obsidian: launcher
     curl -fLO https://glare.now.sh/obsidianmd/obsidian-releases/.AppImage
     mv .AppImage ~/Applications/Obsidian.AppImage
 
-slack:
+slack: (_install "gdebi") 
     wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.17.0-amd64.deb
     sudo gdebi -n slack*.deb
     rm slack*.deb
 
-zoom:
+zoom: (_install "gdebi") 
     wget https://zoom.us/client/latest/zoom_amd64.deb
     sudo gdebi -n zoom*.deb
     rm zoom*.deb
 
 zotero:
-    wget -qO- https://github.com/retorquere/zotero-deb/releases/download/apt-get/install.sh | sudo bash
+    curl -sL https://downloads.sourceforge.net/project/zotero-deb/install.sh | sudo bash
     sudo apt update
     sudo apt install -qy zotero
 
-chrome:
+chrome: (_install "gdebi") 
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo gdebi -n google-chrome*.deb
     rm google-chrome*.deb
 
 # From here: https://code.visualstudio.com/docs/setup/linux
-vscode: base
+vscode: 
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
     sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
     sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
@@ -102,7 +105,7 @@ conda:
     source ~/anaconda3/bin/activate
     conda init
 
-syncthing: base
+syncthing: 
     curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
     echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
     sudo apt-get update
@@ -110,7 +113,7 @@ syncthing: base
     sudo systemctl enable syncthing@$(whoami).service
     sudo systemctl start syncthing@$(whoami).service
 
-docker: base
+docker: 
     sudo apt-get install ca-certificates gnupg lsb-release
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -123,7 +126,7 @@ drone:
     sudo install -t /usr/local/bin drone
     rm drone
 
-ssh: base
+ssh: 
     #!/usr/bin/env bash
     ssh-keygen -t rsa -N "" -f {{ssh_loc}}
     eval `ssh-agent`
@@ -158,4 +161,6 @@ unreal version folder="~/UnrealEngine":
 code-server:
     curl -fsSL https://code-server.dev/install.sh | sh
     sudo systemctl enable --now code-server@$USER
+
+anki: (_install "anki")
 
