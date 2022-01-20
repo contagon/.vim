@@ -168,3 +168,5 @@ unset __conda_setup
 
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+
+alias ccheck='cloudflared tunnel --config /etc/cloudflared/config.yml ingress validate'
