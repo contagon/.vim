@@ -5,6 +5,17 @@ alias open='xdg-open'
 
 alias j='just --justfile ~/dotfiles/justfile --working-directory ~'
 
+# This is from here
+# Shortcut to reboot to windows when desired
+# https://unix.stackexchange.com/a/112284
+reboot_to_windows ()
+{
+    windows_title=$(grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
+    sudo grub-reboot "$windows_title" && sudo reboot
+}
+alias reboot-to-windows='reboot_to_windows'
+
+# fzf settings
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
