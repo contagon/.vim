@@ -11,13 +11,6 @@ _install package:
 
 zsh: (_install "zsh") (_install "stow")
     sudo chsh -s $(which zsh) $(whoami)
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    # powerlevel10k
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    # autosuggestions
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    # syntax highlighting
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     # conda completion
     git clone https://github.com/esc/conda-zsh-completion ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/conda-zsh-completion
     rm ~/.zshrc
@@ -126,12 +119,11 @@ drone:
     sudo install -t /usr/local/bin drone
     rm drone
 
-ssh: 
+ssh:
     #!/usr/bin/env bash
     ssh-keygen -t rsa -N "" -f {{ssh_loc}}
     eval `ssh-agent`
     ssh-add {{ssh_loc}}
-    xclip -selection clipboard < {{ssh_loc}}.pub
     cat {{ssh_loc}}.pub
 
 ### Optional ones that aren't ran by default
