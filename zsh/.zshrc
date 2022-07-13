@@ -1,5 +1,7 @@
 alias c='clear'
 alias gle='google'
+alias ca='conda activate'
+alias open='xdg-open'
 
 alias j='just --justfile ~/dotfiles/justfile --working-directory ~'
 
