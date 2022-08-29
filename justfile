@@ -11,13 +11,22 @@ _install package:
 
 zsh: (_install "zsh") (_install "stow")
     sudo chsh -s $(which zsh) $(whoami)
+    # oh my zsh
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # pretty theme
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    # syntax highlight
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    # auto suggest
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     # conda completion
     git clone https://github.com/esc/conda-zsh-completion ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/conda-zsh-completion
-    rm ~/.zshrc
-    stow zsh
     # install justfile completions
     mkdir ~/.oh-my-zsh/plugins/just
     just --completions zsh > ~/.oh-my-zsh/plugins/just/_just
+    # clean things up
+    rm -f ~/.zshrc
+    stow zsh
 
 vim: (_install "stow") (_install "vim")
     stow vim
@@ -48,7 +57,7 @@ tmux: (_install "stow") (_install "tmux")
     stow tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-nord: (_install "dconf-cli") (_install "uuid-runtime") (_install "gnome-tweak-tool")
+nord: (_install "dconf-cli") (_install "uuid-runtime") (_install "gnome-tweaks")
     #!/usr/bin/env bash
     # install terminal theme
     export TERMINAL=gnome-terminal
@@ -71,7 +80,7 @@ zoom: (_install "gdebi")
     rm zoom*.deb
 
 zotero:
-    curl -sL https://downloads.sourceforge.net/project/zotero-deb/install.sh | sudo bash
+    curl -sL https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash  
     sudo apt update
     sudo apt install -qy zotero
 
