@@ -1,9 +1,13 @@
 alias c='clear'
 alias gle='google'
 alias ca='conda activate'
+alias ma='mamba activate'
+alias mi='mamba install'
+export MAMBA_NO_BANNER=1
 alias open='xdg-open'
 
 alias j='just --justfile ~/dotfiles/justfile --working-directory ~'
+alias ccheck='cloudflared tunnel --config /etc/cloudflared/config.yml ingress validate'
 
 # This is from here
 # Shortcut to reboot to windows when desired
@@ -166,20 +170,23 @@ source $ZSH/oh-my-zsh.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/contagon/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/contagon/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/contagon/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/contagon/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/contagon/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/contagon/mambaforge/etc/profile.d/conda.sh"
     else
-        export PATH="/home/contagon/anaconda3/bin:$PATH"
+        export PATH="/home/contagon/mambaforge/bin:$PATH"
     fi
 fi
 unset __conda_setup
+
+if [ -f "/home/contagon/mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/home/contagon/mambaforge/etc/profile.d/mamba.sh"
+fi
 # <<< conda initialize <<<
 
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
-
-alias ccheck='cloudflared tunnel --config /etc/cloudflared/config.yml ingress validate'
+# source /opt/ros/noetic/setup.zsh
