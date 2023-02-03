@@ -9,7 +9,10 @@ _install package:
         sudo apt-get -qy install {{package}}
     fi
 
-zsh: (_install "zsh") (_install "stow")
+git:
+    stow git
+
+zsh: (_install "zsh") (_install "stow") (_install "fzf")
     sudo chsh -s $(which zsh) $(whoami)
     # oh my zsh
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
