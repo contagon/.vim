@@ -12,6 +12,14 @@ _install package:
 git:
     stow git
 
+mamba: 
+    #!/usr/bin/env bash
+    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+    bash Mambaforge-$(uname)-$(uname -m).sh
+    rm Mambaforge-$(uname)-$(uname -m).sh
+    source ~/mambaforge/bin/activate
+    conda init
+    
 zsh: (_install "zsh") (_install "stow") (_install "fzf")
     sudo chsh -s $(which zsh) $(whoami)
     # oh my zsh
@@ -39,7 +47,6 @@ cloudflared: (_install "gdebi")
     wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
     sudo gdebi -n cloudflared-linux-amd64.deb
     rm cloudflared-linux-amd64.deb
-    echo "Host ssh.eastonpots.com\n  ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h" > ~/.ssh/config
 
 nvim: 
     curl -fLO https://glare.now.sh/neovim/neovim/nvim.appimage
@@ -137,6 +144,7 @@ ssh:
     eval `ssh-agent`
     ssh-add {{ssh_loc}}
     cat {{ssh_loc}}.pub
+    stow ssh
 
 ### Optional ones that aren't ran by default
 launcher: (_install "gdebi") 
