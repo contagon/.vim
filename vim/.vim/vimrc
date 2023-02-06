@@ -34,7 +34,7 @@ endif
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'junegunn/vim-peekaboo'
     Plug 'unblevable/quick-scope'
-    Plug 'psliwka/vim-smoothie'
+    " Plug 'psliwka/vim-smoothie'
     Plug 'preservim/vimux'
     Plug 'tpope/vim-unimpaired'
 call plug#end()

@@ -176,3 +176,14 @@ code-server:
 
 anki: (_install "anki")
 
+mullvad: (_install "gdebi")
+    wget --content-disposition https://mullvad.net/download/app/deb/latest
+    sudo gdebi -n MullvadVPN-*.deb
+
+gdrive: (_install "rclone") (_install "fuse") (_install "stow")
+    stow rclone
+    mkdir -p ~/mnt/gdrive
+    sudo sh -c 'echo user_allow_other >> /etc/fuse.conf'
+    systemctl --user daemon-reload
+    systemctl --user enable rclone@gdrive
+    systemctl --user start rclone@gdrive

@@ -130,8 +130,6 @@ plugins=(
     zsh-syntax-highlighting
 )
 
-setopt nosharehistory
-
 # enable completion for docker
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
 zstyle ':completion:*:*:docker:*' option-stacking yes
@@ -140,6 +138,8 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+setopt noincappendhistory
+setopt nosharehistory
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
