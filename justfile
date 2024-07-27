@@ -9,8 +9,11 @@ _install package:
         sudo apt-get -qy install {{package}}
     fi
 
-git:
+git: (_install "git") (_install "stow")
     stow git
+
+rust:
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 mamba: 
     #!/usr/bin/env bash
@@ -108,15 +111,6 @@ vscode:
     sudo apt update
     sudo apt install -qy code
 
-# See here: https://stackoverflow.com/questions/38080407/how-can-i-install-the-latest-anaconda-with-wget
-conda:
-    #!/usr/bin/env bash
-    wget -O - https://www.anaconda.com/distribution/ 2>/dev/null | sed -ne 's@.*\(https:\/\/repo\.anaconda\.com\/archive\/Anaconda3-.*-Linux-x86_64\.sh\)\">64-Bit (x86) Installer.*@\1@p' | xargs wget
-    bash Anaconda3*.sh -b
-    rm Anaconda3*.sh
-    source ~/anaconda3/bin/activate
-    conda init
-
 syncthing: 
     curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
     echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
@@ -133,12 +127,7 @@ docker:
     sudo apt-get install -qy docker-ce docker-ce-cli containerd.io
     sudo usermod -aG docker $USER
 
-drone:
-    curl -L https://github.com/drone/drone-cli/releases/latest/download/drone_linux_amd64.tar.gz | tar zx
-    sudo install -t /usr/local/bin drone
-    rm drone
-
-ssh:
+ssh: (_install "stow")
     #!/usr/bin/env bash
     ssh-keygen -t rsa -N "" -f {{ssh_loc}}
     eval `ssh-agent`
@@ -152,38 +141,3 @@ launcher: (_install "gdebi")
     sudo gdebi -n amd64.deb
     rm amd64.deb    
     mkdir -p ~/Applications
-
-clone folder list:
-    #!/usr/bin/env bash
-    readarray array <<< $( cat {{list}} )
-    mkdir -p {{folder}} && cd {{folder}}
-    for element in ${array[@]}; do \
-        echo "clonning $element"; \
-        git clone $element; \
-    done
-
-unreal version folder="~/UnrealEngine":
-    #!/usr/bin/env bash
-    git clone --depth 1 git@github.com:EpicGames/UnrealEngine.git -b {{version}} {{folder}}.{{version}}
-    cd {{folder}}.{{version}}
-    bash Setup.sh
-    bash GenerateProjectFiles.sh
-    make -j{{n_cpu}}
-
-code-server:
-    curl -fsSL https://code-server.dev/install.sh | sh
-    sudo systemctl enable --now code-server@$USER
-
-anki: (_install "anki")
-
-mullvad: (_install "gdebi")
-    wget --content-disposition https://mullvad.net/download/app/deb/latest
-    sudo gdebi -n MullvadVPN-*.deb
-
-gdrive: (_install "rclone") (_install "fuse") (_install "stow")
-    stow rclone
-    mkdir -p ~/mnt/gdrive
-    sudo sh -c 'echo user_allow_other >> /etc/fuse.conf'
-    systemctl --user daemon-reload
-    systemctl --user enable rclone@gdrive
-    systemctl --user start rclone@gdrive
