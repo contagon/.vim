@@ -23,24 +23,16 @@ mamba:
     source ~/mambaforge/bin/activate
     conda init
     
-zsh: (_install "zsh") (_install "stow") (_install "fzf")
-    sudo chsh -s $(which zsh) $(whoami)
-    # oh my zsh
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # pretty theme
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    # syntax highlight
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    # auto suggest
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    # conda completion
-    git clone https://github.com/esc/conda-zsh-completion ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/conda-zsh-completion
-    # install justfile completions
-    mkdir ~/.oh-my-zsh/plugins/just
-    just --completions zsh > ~/.oh-my-zsh/plugins/just/_just
-    # clean things up
-    rm -f ~/.zshrc
+zsh: (_install "zsh") (_install "stow") (_install "fzf") (_install "build-essential") (_install "duf")
+    git submodule update --init --recursive
+    # Replacements for common tools
+    cargo install eza
+    cargo install zoxide
+    cargo install bat
+    cargo install fd-find
     stow zsh
+    exec zsh
+    chsh -s $(which zsh)
 
 vim: (_install "stow") (_install "vim")
     stow vim

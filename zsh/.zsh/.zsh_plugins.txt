@@ -1,5 +1,9 @@
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
-marlonrichert/zsh-autocomplete
+zsh-users/zsh-completions
+
+# todo is this better than zsh-autocomplete below?
+# Aloxaf/fzf-tab
+# marlonrichert/zsh-autocomplete
 
 romkatv/powerlevel10k
