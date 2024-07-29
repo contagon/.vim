@@ -189,7 +189,10 @@ fi
 
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+source ~/catkin_new/devel/setup.zsh
 # source /opt/ros/noetic/setup.zsh
-export DISPLAY=:0
+# export DISPLAY=:0
 
 alias ccheck='cloudflared tunnel --config /etc/cloudflared/config.yml ingress validate'
+export URDF_DIR='/home/contagon/Research/aidtr-urdf/'
+export ROBOT_NAME='grizzlyC'
