@@ -1,4 +1,5 @@
 plugged
 viminfo
 .netrwhist
-
+*.zcompdump
+*.zsh_plugins.zsh

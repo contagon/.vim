@@ -13,13 +13,9 @@ alias mi='mamba install'
 alias open='xdg-open'
 
 # Completions
+fpath=($HOME/.zsh/completions $fpath)
 autoload -U compinit; compinit
-_comp_options+=(globdots) # With hidden files
-# source $HOME/.zsh/completion.zsh
-# # more completions
-# fpath=($HOME/.zsh/zsh-completions/src $fpath)
-# TODO: tldr completions
-# https://github.com/tldr-pages/tlrc/blob/main/completions/_tldr
+_comp_options+=(globdots) # With hidden 
 
 # Load antidote & plugins
 source ${ZDOTDIR}/antidote/antidote.zsh
