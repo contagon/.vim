@@ -12,6 +12,9 @@ alias ma='mamba activate'
 alias mi='mamba install'
 alias open='xdg-open'
 
+alias ts="tmux new-session -A -s"
+alias tl="tmux ls"
+
 # Completions
 fpath=($HOME/.zsh/completions $fpath)
 autoload -U compinit; compinit
