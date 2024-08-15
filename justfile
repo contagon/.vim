@@ -30,10 +30,12 @@ zsh: (_install "zsh") (_install "stow") (_install "fzf") (_install "build-essent
     cargo install zoxide
     cargo install bat
     cargo install fd-find
+    cargo install yazi-fm yazi-cli
     cargo install tealdeer
     stow zsh
     exec zsh
     chsh -s $(which zsh)
+    antidote load
 
 vim: (_install "stow") (_install "vim")
     stow vim
