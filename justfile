@@ -9,11 +9,22 @@ _install package:
         sudo apt-get -qy install {{package}}
     fi
 
+# TODO: Check first to see if it's installed?
+_cargo package: (rust)
+    cargo binstall {{package}} -y
+
 git: (_install "git") (_install "stow")
     stow git
 
 rust:
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    #!/usr/bin/env bash
+    PKG=$(which rustup)
+    if [ "" = "$PKG" ]; then
+        # rustup / cargo
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        # cargo-binstall
+        curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+    fi
 
 mamba: 
     #!/usr/bin/env bash
@@ -23,7 +34,7 @@ mamba:
     source ~/mambaforge/bin/activate
     conda init
     
-zsh: (_install "zsh") (_install "stow") (_install "fzf") (_install "build-essential") (_install "duf")
+zsh: (_install "zsh") (_install "stow") (_install "fzf") (_install "build-essential") (_install "duf") (rust)
     git submodule update --init --recursive
     # Replacements for common tools
     cargo install eza
@@ -41,18 +52,17 @@ vim: (_install "stow") (_install "vim")
     stow vim
     vim +'PlugInstall --sync' +qa
 
+
 cloudflared: (_install "gdebi")
     wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
     sudo gdebi -n cloudflared-linux-amd64.deb
     rm cloudflared-linux-amd64.deb
 
-nvim: 
-    curl -fLO https://glare.now.sh/neovim/neovim/nvim.appimage
-    chmod +x nvim.appimage
-    sudo chown root:root nvim.appimage
-    sudo mv nvim.appimage /usr/bin/nvim
+nvim: (_install "stow") (_cargo "bob-nvim")
+    git submodule update --init --recursive
+    bob use stable
     stow nvim
-    nvim +'PlugInstall --sync' +qa
+    _cargo ripgrep
 
 font myfont="Meslo":
     #!/usr/bin/env bash
@@ -76,6 +86,14 @@ nord: (_install "dconf-cli") (_install "uuid-runtime") (_install "gnome-tweaks")
 obsidian: launcher 
     curl -fLO https://glare.now.sh/obsidianmd/obsidian-releases/.AppImage
     mv .AppImage ~/Applications/Obsidian.AppImage
+
+lazygit: 
+  #!/bin/env bash 
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  echo ${LAZYGIT_VERSION}
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  tar xf lazygit.tar.gz lazygit
+  sudo install lazygit /usr/local/bin
 
 slack: (_install "gdebi") 
     wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.17.0-amd64.deb

@@ -3,3 +3,4 @@ viminfo
 .netrwhist
 *.zcompdump
 *.zsh_plugins.zsh
+*.zsh_history

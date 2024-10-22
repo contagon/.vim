@@ -1,7 +1,8 @@
 # editor
 export ZDOTDIR="$HOME/.zsh"
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
 . "$HOME/.cargo/env"
 
 # zsh
