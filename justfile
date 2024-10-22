@@ -1,7 +1,7 @@
 ssh_loc := "/home/$USER/.ssh/id_rsa"
 n_cpu   := "$(($(grep -c ^processor /proc/cpuinfo)-2))"
 
-_install package:
+apt +package:
     #!/usr/bin/env bash
     PKG_OK=$(dpkg-query -W --showformat='${Status}\n' {{package}}|grep "install ok installed")
     if [ "" = "$PKG_OK" ]; then
@@ -10,10 +10,10 @@ _install package:
     fi
 
 # TODO: Check first to see if it's installed?
-_cargo package: (rust)
+cargo +package: (rust)
     cargo binstall {{package}} -y
 
-git: (_install "git") (_install "stow")
+git: (apt "git") (apt "stow")
     stow git
 
 rust:
@@ -34,35 +34,30 @@ mamba:
     source ~/mambaforge/bin/activate
     conda init
     
-zsh: (_install "zsh") (_install "stow") (_install "fzf") (_install "build-essential") (_install "duf") (rust)
+zsh: (apt "zsh stow fzf build-essential") (duf) (lazygit) (cargo "eza zoxide bat fd-find yazi-fm yazi-cli tealdeer ripgrep")
     git submodule update --init --recursive
-    # Replacements for common tools
-    cargo install eza
-    cargo install zoxide
-    cargo install bat
-    cargo install fd-find
-    cargo install yazi-fm yazi-cli
-    cargo install tealdeer
+    tldr --update
     stow zsh
     exec zsh
     chsh -s $(which zsh)
     antidote load
 
-vim: (_install "stow") (_install "vim")
+vim: (apt "stow") (apt "vim")
     stow vim
     vim +'PlugInstall --sync' +qa
 
 
-cloudflared: (_install "gdebi")
+cloudflared: (apt "gdebi")
     wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
     sudo gdebi -n cloudflared-linux-amd64.deb
     rm cloudflared-linux-amd64.deb
 
-nvim: (_install "stow") (_cargo "bob-nvim")
+nvim: (apt "stow") (cargo "bob-nvim")
     git submodule update --init --recursive
     bob use stable
     stow nvim
-    _cargo ripgrep
+    cargo ripgrep
+    cargo tree-sitter-cli
 
 font myfont="Meslo":
     #!/usr/bin/env bash
@@ -71,11 +66,11 @@ font myfont="Meslo":
     fc-cache -fv
     rm {{myfont}}.zip
 
-tmux: (_install "stow") (_install "tmux")
+tmux: (apt "stow") (apt "tmux")
     stow tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-nord: (_install "dconf-cli") (_install "uuid-runtime") (_install "gnome-tweaks")
+nord: (apt "dconf-cli") (apt "uuid-runtime") (apt "gnome-tweaks")
     #!/usr/bin/env bash
     # install terminal theme
     export TERMINAL=gnome-terminal
@@ -90,17 +85,25 @@ obsidian: launcher
 lazygit: 
   #!/bin/env bash 
   LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-  echo ${LAZYGIT_VERSION}
   curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
   tar xf lazygit.tar.gz lazygit
   sudo install lazygit /usr/local/bin
+  rm lazygit*
 
-slack: (_install "gdebi") 
+duf: (apt "gdebi")
+  #!/bin/env bash 
+  DUF_VERSION=$(curl -s "https://api.github.com/repos/muesli/duf/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  echo $DUF_VERSION
+  curl -Lo duf.deb "https://github.com/muesli/duf/releases/latest/download/duf_${DUF_VERSION}_linux_amd64.deb"
+  sudo gdebi -n duf.deb
+  rm duf.deb
+
+slack: (apt "gdebi") 
     wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.17.0-amd64.deb
     sudo gdebi -n slack*.deb
     rm slack*.deb
 
-zoom: (_install "gdebi") 
+zoom: (apt "gdebi") 
     wget https://zoom.us/client/latest/zoom_amd64.deb
     sudo gdebi -n zoom*.deb
     rm zoom*.deb
@@ -110,7 +113,7 @@ zotero:
     sudo apt update
     sudo apt install -qy zotero
 
-chrome: (_install "gdebi") 
+chrome: (apt "gdebi") 
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo gdebi -n google-chrome*.deb
     rm google-chrome*.deb
@@ -140,7 +143,7 @@ docker:
     sudo apt-get install -qy docker-ce docker-ce-cli containerd.io
     sudo usermod -aG docker $USER
 
-ssh: (_install "stow")
+ssh: (apt "stow")
     #!/usr/bin/env bash
     ssh-keygen -t rsa -N "" -f {{ssh_loc}}
     eval `ssh-agent`
@@ -149,7 +152,7 @@ ssh: (_install "stow")
     stow ssh
 
 ### Optional ones that aren't ran by default
-launcher: (_install "gdebi") 
+launcher: (apt "gdebi") 
     curl -fLO https://glare.now.sh/TheAssassin/AppImageLauncher/amd64.deb
     sudo gdebi -n amd64.deb
     rm amd64.deb    

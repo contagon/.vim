@@ -19,4 +19,9 @@ return {
   		auto_install = true,
   	},
   },
+
+  {
+    "markonm/traces.vim",
+    lazy = false,
+  }
 }

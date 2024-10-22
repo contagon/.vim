@@ -7,10 +7,8 @@ fi
 
 # Aliases
 alias c='clear'
-alias ca='conda activate'
-alias ma='mamba activate'
-alias mi='mamba install'
 alias open='xdg-open'
+alias gg="lazygit"
 
 alias ts="tmux new-session -A -s"
 alias tl="tmux ls"
