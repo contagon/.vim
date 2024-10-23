@@ -89,6 +89,7 @@ lazygit:
   tar xf lazygit.tar.gz lazygit
   sudo install lazygit /usr/local/bin
   rm lazygit*
+  stow lazygit
 
 duf: (apt "gdebi")
   #!/bin/env bash 
