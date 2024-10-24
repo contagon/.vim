@@ -6,4 +6,7 @@ return {
     main = 'ibl',
     opts = {},
   },
+  {
+    'HiPhish/rainbow-delimiters.nvim',
+  },
 }
