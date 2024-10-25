@@ -9,6 +9,7 @@ fi
 alias c='clear'
 alias open='xdg-open'
 alias gg="lazygit"
+alias nv="nvim"
 
 alias ts="tmux new-session -A -s"
 alias tl="tmux ls"

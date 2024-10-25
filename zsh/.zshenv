@@ -2,8 +2,15 @@
 export ZDOTDIR="$HOME/.zsh"
 export EDITOR="nvim"
 export VISUAL="nvim"
+
+# nvim manager
 export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
+# cargo 
 . "$HOME/.cargo/env"
+# nvm (https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
+# this can be slow, so disabled since we don't use it often
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # zsh
 export HISTFILE=$HOME/.zhistory    # History filepath

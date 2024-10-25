@@ -34,7 +34,7 @@ mamba:
     source ~/mambaforge/bin/activate
     conda init
     
-zsh: (apt "zsh stow fzf build-essential") (duf) (lazygit) (cargo "eza zoxide bat fd-find yazi-fm yazi-cli tealdeer ripgrep")
+zsh: (apt "zsh stow fzf build-essential") (duf) (lazygit) (cargo "eza zoxide bat fd-find yazi-fm yazi-cli tealdeer ripgrep") (node)
     git submodule update --init --recursive
     tldr --update
     stow zsh
@@ -58,6 +58,12 @@ nvim: (apt "stow") (cargo "bob-nvim")
     stow nvim
     cargo ripgrep
     cargo tree-sitter-cli
+
+node:
+    #!/usr/bin/env bash
+    PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v1.40.1/install.sh | bash'
+    source ~/.nvm/nvm.sh
+    nvm install node
 
 font myfont="Meslo":
     #!/usr/bin/env bash
