@@ -436,6 +436,9 @@ require('lazy').setup({
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
+    opts = {
+      multiline_threshold = 5,
+    },
   },
   { import = 'plugins' },
 }, {
