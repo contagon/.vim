@@ -1,17 +1,33 @@
 ssh_loc := "/home/$USER/.ssh/id_rsa"
 n_cpu   := "$(($(grep -c ^processor /proc/cpuinfo)-2))"
 
-apt +package:
-    #!/usr/bin/env bash
-    PKG_OK=$(dpkg-query -W --showformat='${Status}\n' {{package}}|grep "install ok installed")
-    if [ "" = "$PKG_OK" ]; then
-        echo "No {{package}}. Setting up {{package}}."
-        sudo apt-get -qy install {{package}}
-    fi
+# ------------------- Package Installers ------------------- #
 
-# TODO: Check first to see if it's installed?
+# Install a package using apt
+apt +package:
+    #!/usr/bin/bash
+    for p in {{package}}; do
+        PKG_OK=$(dpkg-query -W --showformat='${Status}\n' {{package}}|grep "install ok installed")
+        if [ "" = "$PKG_OK" ]; then
+            echo "No {{package}}. Setting up {{package}}."
+            sudo apt-get -qy install {{package}}
+        fi
+    done
+
+# Install a package using cargo
 cargo +package: (rust)
-    cargo binstall {{package}} -y
+    #!/usr/bin/bash
+    if [ "update" == {{package}} ]; then
+        just cargo cargo-update
+        cargo install-update -a
+        exit 0
+    fi
+    for p in {{package}}; do
+        echo $RESULT
+        if [ "" = "$RESULT" ]; then
+            cargo binstall {{package}} -y
+        fi
+    done
 
 git: (apt "git") (apt "stow")
     stow git
@@ -26,14 +42,6 @@ rust:
         curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
     fi
 
-mamba: 
-    #!/usr/bin/env bash
-    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
-    bash Mambaforge-$(uname)-$(uname -m).sh
-    rm Mambaforge-$(uname)-$(uname -m).sh
-    source ~/mambaforge/bin/activate
-    conda init
-    
 zsh: (apt "zsh stow fzf build-essential") (duf) (lazygit) (cargo "eza zoxide bat fd-find yazi-fm yazi-cli tealdeer ripgrep") (node)
     git submodule update --init --recursive
     tldr --update
